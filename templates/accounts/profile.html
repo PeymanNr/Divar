@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+     Profile
+{% endblock %}
+
+{% block content %}
+    <h2>Hi {{ request.user.phone_number }}, Wellcome To Divar  </h2>
+    {% csrf_token %}
+    <a href="http://127.0.0.1:8000/accounts/login/"> Logout!</a><br>
+    <br>
+    <br>
+    <br>
+    <h4> Please Select City Location </h4>
+    {% for p in advertisements %}
+
+        <a href="{% url 'home-page' adv.pk %}">{{ p.name }}</a>
+
+
+    {% endfor %}
+{% endblock %}

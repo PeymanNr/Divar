@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}
+     Home
+{% endblock %}
+
+{% block content %}
+      <h2>Hi {{ request.user.phone_number }}, Wellcome To Divar  </h2>
+    <a href="http://127.0.0.1:8000/accounts/login/"> Logout!</a><br>
+    <br>
+    <br>
+    <br>
+    <h4> Please Select City Location </h4>
+    <form action="{% url 'search-view' %}" method="GET">
+                <input type="text" name="search">
+                <input type="submit">
+    </form>
+
+    {% for adv in cities %}
+
+        <a href="{% url 'adv-city' adv.pk %}">{{ adv.city }}</a>
+
+
+    {% endfor %}
+    {% if object %}
+
+        <a href="{% url 'adv-city' object.pk %}">{{ object.name }}</a>
+
+
+    {% endif %}
+
+{% endblock %}

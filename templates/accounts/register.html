@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+<title>register</title>
+{% block content %}
+    <div class="container-fluid">
+        <h1>instagram clone</h1>
+        <p>register to view     images and videos fo your friends</p>
+        <form method="post">
+            {{ register.as_p }}
+            {% csrf_token %}
+            <input type="submit" value="register">
+        </form>
+    </div>
+{% endblock %}
