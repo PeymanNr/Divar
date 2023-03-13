@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}
+     Home
+{% endblock %}
+
+{% block content %}
+      <h2>Hi {{ request.user.phone_number }}, Wellcome To Divar  </h2>
+    <a href="http://127.0.0.1:8000/accounts/login/"> Logout!</a><br>
+    <a href="http://127.0.0.1:8000/accounts/profile/"> Profile</a><br>
+    <a href="http://127.0.0.1:8000/advertisement/create/"> Create Avdertisement</a><br>
+    <a href="http://127.0.0.1:8000/advertisement/list/"> My Avdertisements</a><br>
+    <a href="http://127.0.0.1:8000/accounts/home/"> Home</a><br>
+    <br>
+    <br>
+    <br>
+    {% for adv in advertisements %}
+
+       <h3><a href="{% url 'adv-detail' adv.pk %}">{{ adv.title }}</a><br></h3>
+    <br>
+
+
+    {% endfor %}
+{% endblock %}

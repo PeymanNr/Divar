@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<a href="http://127.0.0.1:8000/accounts/home/"> Home</a>&nbsp;&nbsp;&nbsp;
+<a href="http://127.0.0.1:8000/accounts/profile/"> Profile</a>&nbsp;&nbsp;
+<a href="http://127.0.0.1:8000/advertisement/list/"> My Avdertisements</a>&nbsp;&nbsp;
+<a href="http://127.0.0.1:8000/advertisement/create/"> Create Avdertisement</a>&nbsp;&nbsp;
+<a href="http://127.0.0.1:8000/accounts/login/"> Logout!</a><br><br>
+<h4> List My Advertisements:</h4>
+<ul>
+   {% for adv in object_list %}
+
+        <a href="{% url 'adv-detail' adv.pk %}">{{ adv.title }}</a><br>
+
+
+    {% endfor %}
+</ul>
+{% endblock %}
+{% block title %}
+     {{ advertisements.title }}
+{% endblock %}

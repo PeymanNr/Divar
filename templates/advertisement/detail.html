@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h3> {{ advertisements.status }}</h3>
+    <h3> {{ advertisements.title }}</h3>
+    <h5> {{ advertisements.description }}</h5>
+    <h3> {{ advertisements.price }} $ </h3>
+    <h4> {{ advertisements.location }}</h4>
+   <h3> Call : {{ advertisements.phone_number }}</h3>
+
+{% endblock %}
+{% block title %}
+     {{ advertisements.title }}
+{% endblock %}
