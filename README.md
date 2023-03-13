@@ -5,7 +5,7 @@
   <img 
     width="400"
     height="400"
-    src=".README_images/a4e3ee4b.png"
+    src="divar.png"
   >
 </p>
 
