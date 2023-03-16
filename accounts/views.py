@@ -35,10 +35,12 @@ def register_user(request):
             new_user = MyUser(phone_number=request.POST['phone_number'],
                               password=request.POST['password2']
                               )
-            new_profile = Profile(user=new_user,
-                                  first_name=request.POST['first_name'],
-                                  last_name=request.POST['last_name'],
-                                  )
+            if new_user:
+                Profile(
+                    user=new_user,
+                    first_name=request.POST['first_name'],
+                    last_name=request.POST['last_name'],
+                        )
             return render(request, 'accounts/profile.html')
     else:
         register = RegisterForm()
