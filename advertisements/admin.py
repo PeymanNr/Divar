@@ -1,13 +1,7 @@
 from django.contrib import admin
 from django.contrib.admin import register
 
-from advertisements.models import Category, Advertisement
-
-
-# Register your models here.
-@register(Category)
-class CategoryAdmin(admin.ModelAdmin):
-    list_display = ['name']
+from advertisements.models import Advertisement
 
 
 @register(Advertisement)

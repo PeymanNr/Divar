@@ -6,8 +6,6 @@ from accounts.models import MyUser, Profile
 
 
 class RegisterForm(UserCreationForm):
-    first_name = forms.CharField(max_length=100)
-    last_name = forms.CharField(max_length=100)
 
     class Meta:
         model = MyUser

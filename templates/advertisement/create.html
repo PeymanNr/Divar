@@ -1,10 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-</body>
-</html>
+{% block title %} Add New Advertisement {% endblock %}
+
+{% block content %}
+  <h3>Add New Advertisement</h3>
+  <form method="POST" action="">
+    {{form.as_p}}
+    {% csrf_token %}
+    <button type="submit"> Share </button>
+  </form>
+<a href="{% url 'Home' %}"> Back To Home</a><br>
+<a href="{% url 'Profile' %}"> My Profile</a>
+{% endblock %}

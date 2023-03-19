@@ -1,9 +1,9 @@
-
 from django.contrib import admin
-from .models import Category
+from category.models import Category
+from django.contrib.admin import register
 
 
-@admin.register(Category)
+@register(Category)
 class AdminCategory(admin.ModelAdmin):
     fields = ('name', 'parent', 'slug')
     list_display = ('name', 'parent')

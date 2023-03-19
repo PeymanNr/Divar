@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<a href="http://127.0.0.1:8000/accounts/home/"> Home</a>&nbsp;&nbsp;&nbsp;
-<a href="http://127.0.0.1:8000/accounts/profile/"> Profile</a>&nbsp;&nbsp;
+<a href="http://127.0.0.1:8000/account/home/"> Home</a>&nbsp;&nbsp;&nbsp;
+<a href="http://127.0.0.1:8000/account/profile/"> Profile</a>&nbsp;&nbsp;
 <a href="http://127.0.0.1:8000/advertisement/list/"> My Avdertisements</a>&nbsp;&nbsp;
 <a href="http://127.0.0.1:8000/advertisement/create/"> Create Avdertisement</a>&nbsp;&nbsp;
-<a href="http://127.0.0.1:8000/accounts/login/"> Logout!</a><br><br>
+<a href="http://127.0.0.1:8000/account/login/"> Logout!</a><br><br>
 <h4> List My Advertisements:</h4>
 <ul>
    {% for adv in object_list %}

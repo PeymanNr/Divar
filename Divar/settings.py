@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'accounts',
     'advertisements',
     'locations',
+    'category',
 ]
 
 MIDDLEWARE = [

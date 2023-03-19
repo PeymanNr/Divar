@@ -2,8 +2,6 @@ from django.core.validators import RegexValidator
 from django.db import models
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractUser
-from accounts.utils import MobileNumberValidator
-from locations.models import City
 
 
 class MyUserManager(BaseUserManager):
@@ -12,7 +10,7 @@ class MyUserManager(BaseUserManager):
     def create_user(self, phone_number, password=None, **extra_fields):
         """Creates and saves user with given phone and password"""
         if not phone_number:
-            raise ValueError('phone number reuired!')
+            raise ValueError('phone number required!')
         user = self.model(phone_number=phone_number, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
@@ -36,7 +34,6 @@ class MyUser(AbstractUser):
                                     max_length=13)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
-
     objects = MyUserManager()
 
     USERNAME_FIELD = 'phone_number'

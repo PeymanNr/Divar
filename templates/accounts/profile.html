@@ -7,15 +7,23 @@
 {% block content %}
     <h2>Hi {{ request.user.phone_number }}, Wellcome To Divar  </h2>
     {% csrf_token %}
-    <a href="http://127.0.0.1:8000/accounts/login/"> Logout!</a><br>
+    <a href="http://127.0.0.1:8000/account/login/"> Logout!</a><br>
     <br>
     <br>
     <br>
-    <h4> Please Select City Location </h4>
-    {% for p in advertisements %}
+    <p>Account Phone: {{ user.phone_number }}</p>
+    <input type="text" VALUE="Nickname" readonly>
+    <br>
 
-        <a href="{% url 'home-page' adv.pk %}">{{ p.name }}</a>
+
+        <h2>Posted Advertisements</h2>
+        {% for adv in user.advertisements.all %}
+            <a href="{{ adv.get_absolute_url }}"><h3>{{ adv.title }}</h3></a>
+            <p>price :{{ adv.price }}$</p>
+            <br>
+            <br>
+        {% endfor %}
 
 
-    {% endfor %}
+
 {% endblock %}
