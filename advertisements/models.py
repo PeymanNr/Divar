@@ -1,19 +1,7 @@
 from django.db import models
 from Divar import settings
+from category.models import Category
 from locations.models import Location
-
-
-class Category(models.Model):
-    name = models.CharField(max_length=32)
-    is_active = models.BooleanField(default=True)
-    parent = models.ForeignKey('self', on_delete=models.CASCADE, related_name='children', null=True, blank=True)
-
-    class Meta:
-        verbose_name = "Category"
-        verbose_name_plural = "Categories"
-
-    def __str__(self):
-        return f"{self.name}"
 
 
 class Advertisement(models.Model):
@@ -33,3 +21,7 @@ class Advertisement(models.Model):
     price = models.IntegerField(default=0, verbose_name='Price')
     phone_number = models.CharField(verbose_name='Mobile Number', max_length=13)
     status = models.PositiveSmallIntegerField(default=NEW, choices=ATTRIBUTE_TYPE_FIELDS)
+
+    def get_absolute_url(self):
+        from django.urls import reverse
+        return reverse('adv-detail', args=[self.pk])

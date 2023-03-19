@@ -1,13 +1,14 @@
 {% extends 'base.html' %}
-<title>register</title>
+<title>Register</title>
 {% block content %}
     <div class="container-fluid">
-        <h1>instagram clone</h1>
-        <p>register to view     images and videos fo your friends</p>
+        <h1>Register in Divar</h1>
+        <p>Register Now To See The Ads of Different Cities </p>
         <form method="post">
-            {{ register.as_p }}
+            {{ form.as_p }}
             {% csrf_token %}
             <input type="submit" value="register">
         </form>
+        <p>Do have an Account? <a href="http://127.0.0.1:8000/account/login/"> Login Now!</a></p>
     </div>
 {% endblock %}
