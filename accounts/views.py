@@ -1,11 +1,11 @@
 from django.views import View
-from django.views.generic import ListView
+from django.views.generic import ListView, UpdateView
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import FormView, TemplateView
-from accounts.forms import RegisterForm, ProfileForm, SearchForm, LoginFrom
-from accounts.models import MyUser, Profile
+from accounts.forms import RegisterForm, LoginFrom, ProfileForm, EditProfileForm
+from accounts.models import MyUser
 from locations.models import City, Location
 
 
@@ -19,6 +19,7 @@ class ProfileView(TemplateView):
     def get_context_data(self, *args, object_list=None, **kwargs):
         context = super().get_context_data(*args, object_list=object_list, **kwargs)
         context['user'] = self.request.user
+        context['nickname'] = self.request.user.nickname
         return context
 
 
@@ -61,8 +62,8 @@ class RegisterUserView(FormView):
                     phone_number=request.POST['phone_number'],
                     password=request.POST['password2']
                 )
+            return redirect('Home')
 
-                return render(request, 'select.html')
         else:
             register = RegisterForm()
         return render(request, 'accounts/register.html', {"register": register})
@@ -80,6 +81,20 @@ class SearchView(View):
             data = City.objects.get(name=query)
 
         return render(request, 'select.html', {'object': data})
+
+
+class EditProfileView(UpdateView):
+    """
+        Edit user profile
+    """
+    model = MyUser
+    form_class = EditProfileForm
+    template_name = 'accounts/edit_profile.html'
+    success_url = reverse_lazy('Profile')
+    slug_field = "phone_number"
+
+    def get_object(self, queryset=None):
+        return self.request.user
 
 
 class ProfileView(FormView):

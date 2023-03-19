@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<a href="http://127.0.0.1:8000/account/home/"> Home</a>&nbsp;&nbsp;&nbsp;
+<a href="http://127.0.0.1:8000/advertisement/list/"> My Avdertisements</a>&nbsp;&nbsp;
+<a href="http://127.0.0.1:8000/advertisement/create/"> Create Avdertisement</a>&nbsp;&nbsp;
+<a href="http://127.0.0.1:8000/account/login/"> Logout!</a><br><br>
+
+    <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+    </form>
+
+
+{% endblock %}

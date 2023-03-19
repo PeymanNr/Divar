@@ -32,6 +32,7 @@ class MyUser(AbstractUser):
                                 )
     phone_number = models.CharField(validators=[phone_regex], verbose_name='Mobile Number', unique=True,
                                     max_length=13)
+    nickname = models.CharField(max_length=10)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
     objects = MyUserManager()
