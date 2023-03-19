@@ -25,3 +25,14 @@ class Advertisement(models.Model):
     def get_absolute_url(self):
         from django.urls import reverse
         return reverse('adv-detail', args=[self.pk])
+
+    def __str__(self):
+        return f"{self.title} > {self.location.city.name}"
+
+
+class AdvertisementImage(models.Model):
+    image = models.ImageField(upload_to='advertisements/')
+    advertisement = models.ForeignKey(Advertisement, on_delete=models.CASCADE, related_name='images')
+
+    def __str__(self):
+        return str(self.advertisement)
