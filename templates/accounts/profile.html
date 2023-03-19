@@ -8,11 +8,12 @@
     <h2>Hi {{ request.user.phone_number }}, Wellcome To Divar  </h2>
     {% csrf_token %}
     <a href="http://127.0.0.1:8000/account/login/"> Logout!</a><br>
+    <a href="{% url 'edit-profile' %}">Edit Profile</a>
     <br>
     <br>
     <br>
     <p>Account Phone: {{ user.phone_number }}</p>
-    <input type="text" VALUE="Nickname" readonly>
+    <p>Nickname : {{ user.nickname }}</p>
     <br>
 
 
