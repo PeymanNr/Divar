@@ -29,7 +29,7 @@ class MyUser(AbstractUser):
     phone_regex = RegexValidator(
         regex=r'^(\+98|0)?9\d{9}$',
         message="Phone number must be entered in the format: '09...' or format: '+989..."
-                                )
+    )
     phone_number = models.CharField(validators=[phone_regex], verbose_name='Mobile Number', unique=True,
                                     max_length=13)
     nickname = models.CharField(max_length=10)
@@ -52,4 +52,3 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.first_name
-

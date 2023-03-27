@@ -1,5 +1,5 @@
 from django.views import View
-from django.views.generic import ListView, UpdateView
+from django.views.generic import UpdateView
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
@@ -7,12 +7,13 @@ from django.views.generic import FormView, TemplateView
 from accounts.forms import RegisterForm, LoginFrom, ProfileForm, EditProfileForm
 from accounts.models import MyUser
 from locations.models import City, Location
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 
+@method_decorator(login_required, name='dispatch')
 class ProfileView(TemplateView):
-    """
-    Show user profile and all advertisements posted by user
-    """
+    """Show user profile and all advertisements posted by user"""
     model = MyUser
     template_name = 'accounts/profile.html'
 

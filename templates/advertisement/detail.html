@@ -1,12 +1,21 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <a href="http://127.0.0.1:8000/account/login/"> Logout!</a><br>
+    <a href="http://127.0.0.1:8000/account/profile/"> Profile</a><br>
+    <a href="http://127.0.0.1:8000/advertisement/create/"> Create Advertisement</a><br>
+    <a href="http://127.0.0.1:8000/advertisement/list/"> My Advertisement</a><br>
+    <a href="http://127.0.0.1:8000/account/home/"> Home</a><br>
+    <br>
+    <br>
+    <br>
     <h3> {{ advertisements.status }}</h3>
     <h3> {{ advertisements.title }}</h3>
     <h5> {{ advertisements.description }}</h5>
     <h3> {{ advertisements.price }} $ </h3>
     <h4> {{ advertisements.location }}</h4>
    <h3> Call : {{ advertisements.phone_number }}</h3>
+    <img src="{{ advertisements.images.all.1.image.url }}">
 
 {% endblock %}
 {% block title %}

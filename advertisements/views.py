@@ -1,15 +1,12 @@
-from django.contrib.auth.decorators import login_required
-from django.db.models import Q
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.utils.decorators import method_decorator
 from django.views import View
 from django.views.generic import FormView
-from django.http import HttpResponse, Http404
+from django.http import Http404
 from django.views.generic import ListView
 from advertisements.forms import AdvertisementForm
 from advertisements.models import Advertisement
-from locations.models import City, Location
+from locations.models import Location
 
 
 class AdvertisementViewList(ListView):
@@ -35,24 +32,25 @@ class CreateAdvertisementsView(FormView):
             return super().form_valid(form)
 
 
-def home_view(request):
-    advertisements = Advertisement.objects.all()
-    return render(request, 'advertisement/home.html', {'advertisements': advertisements})
+class HomeView(View):
+    def get(self, request, *args, **kwargs):
+        advertisements = Advertisement.objects.all()
+        return render(request, 'advertisement/home.html', {'advertisements': advertisements})
 
 
-def advertisement_detail(request, pk):
-    queryset = Advertisement.objects.filter(pk=pk)
-    if queryset.exists():
-        advertisements = queryset.first()
-        return render(request, 'advertisement/detail.html', {"advertisements": advertisements})
-    raise Http404
+class AdvertisementDetailView(View):
+    def get(self, request, pk, *args, **kwargs):
+        queryset = Advertisement.objects.filter(pk=pk)
+        if queryset.exists():
+            advertisements = queryset.first()
+            return render(request, 'advertisement/detail.html', {"advertisements": advertisements})
+        raise Http404
 
 
-def advertisements_city(request, pk):
-    location = Location.objects.prefetch_related('ad_location').get(pk=pk)
-    queryset = location.ad_location.all()
-    if queryset.exists():
-        advertisements = queryset
-    return render(request, 'home.html', {"advertisements": advertisements})
-
-
+class AdvertisementCityView(View):
+    def get(self, request, pk, *args, **kwargs):
+        location = Location.objects.prefetch_related('ad_location').get(pk=pk)
+        queryset = location.ad_location.all()
+        if queryset.exists():
+            advertisements = queryset
+        return render(request, 'home.html', {"advertisements": advertisements})
