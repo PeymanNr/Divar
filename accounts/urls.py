@@ -11,6 +11,3 @@ urlpatterns = [
     path('profile/', ProfileView.as_view(), name='Profile'),
     path('edit/', EditProfileView.as_view(), name='edit-profile'),
 ]
-
-
-
